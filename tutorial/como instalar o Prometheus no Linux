@@ -1,0 +1,28 @@
+
+   15  sudo apt-get update
+   16  sudo apt install curl
+   17  mkdir Documentos/descomplicandoPrometheus
+   20  cd descomplicandoPrometheus/
+   31  curl -LO https://github.com/prometheus/prometheus/releases/download/v2.38.0/prometheus-2.38.0.linux-amd64.tar.gz
+   47  sudo mv prometheus-2.38.0.linux-amd64 /usr/local/bin/
+   48  sudo mv /usr/local/bin/prometheus-2.38.0.linux-amd64 ./
+   50  cd prometheus-2.38.0.linux-amd64/
+   52  sudo mv prometheus promtool /usr/local/bin/
+   53  sudo mkdir /etc/prometheus
+   54  cp prometheus.yml /etc/prometheus/
+   55  sudo cp prometheus.yml /etc/prometheus/
+   56  vim /etc/prometheus/prometheus.yml 
+   57  sudo mkdir /var/lib/prometheus
+   58  mv consoles console_libraries/ /var/lib/prometheus/
+   59  sudo addgroup --system prometheus
+   60  sudo adduser --shell /sbin/nologin --group --system --group prometheus
+   61  vim /etc/systemd/system/prometheus.service
+   62  sudo vim /etc/systemd/system/prometheus.service
+   63  sudo systemctl daemon-reload 
+   64  sudo systemctl start  prometheus.service 
+   65  sudo systemctl status  prometheus.service 
+   66  journalctl -u prometheus
+   67  sudo journalctl -u prometheus
+   68  sudo chown -R prometheus:prometheus /etc/prometheus/ /var/lib/prometheus/ /usr/local/bin/prometheus /usr/local/bin/promtool 
+   69  sudo systemctl start  prometheus.service 
+ 
